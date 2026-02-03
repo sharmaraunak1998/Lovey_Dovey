@@ -1,6 +1,11 @@
 const btnNo3 = document.querySelector("#move-random");
+let lastFlyAwayTime = 0;
 
 function flyAway(elm) {
+  const now = Date.now();
+  // Throttle: only allow flyAway every 100ms to prevent performance issues
+  if (now - lastFlyAwayTime < 100) return;
+  lastFlyAwayTime = now;
 
   // Add blur class for "motion" feel
   elm.classList.add("moving");
@@ -17,8 +22,15 @@ function flyAway(elm) {
 
 }
 
-// HOVER: Button dashes away when you hover
+// HOVER: Button dashes away when you hover (desktop)
 btnNo3.addEventListener("mouseenter", function (e) {
+  btnNo3.classList.add("abs");
+  flyAway(e.target);
+});
+
+// TOUCH: Button dashes away on touch (mobile)
+btnNo3.addEventListener("touchstart", function (e) {
+  e.preventDefault();
   btnNo3.classList.add("abs");
   flyAway(e.target);
 });
