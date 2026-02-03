@@ -43,3 +43,37 @@
     border-radius: 66px;
     box-shadow: 0.5rem 1rem 3rem hsl(0, 0%, 0%, 0.3);
   }
+  /* .no1, .no2 , .no3, .yespage {
+    display: none;
+  } */
+/* All pages start invisible and slightly smaller */
+.no1, .no2, .no3, .yespage {
+  display: none; /* Keep this to remove from flow */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  position: relative;
+}
+
+/* When the .active class is added, they fade in and grow to full size */
+.active {
+  display: block !important; /* Force display */
+  opacity: 1;
+  transform: scale(1);
+}
+
+#move-random {
+  /* High speed: 150ms is fast enough to see but too fast to react to */
+  transition: all 0.15s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  z-index: 1000;
+  /* Optional: adds a slight motion blur effect while moving */
+  filter: blur(0px); 
+}
+
+#move-random.moving {
+  filter: blur(1px); /* Adds a "speed" effect while it's dashing */
+}
+
+.abs{
+  position: absolute;
+}
